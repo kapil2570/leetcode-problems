@@ -11,6 +11,6 @@ public:
         if(arr[len-1]>arr[0])
             cnt+=1;
 
-        return (cnt ==0 || cnt==1);
+        return cnt<=1;
     }
 };
