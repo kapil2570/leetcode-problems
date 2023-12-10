@@ -1,22 +1,16 @@
 class Solution {
 public:
-    bool check(vector<int>& nums) {
-        int check=0;
-        int i=0;
-        for(i=0 ; i<nums.size()-1 ; i++)
+    bool check(vector<int>& arr) {
+        int cnt = 0;
+        int len = arr.size();
+        for(int i=0 ; i<len-1 ; i++)
         {
-            if(nums[i]<=nums[i+1])
-                continue;
-            else if(nums[i]>nums[i+1] && !check)
-            {
-                check = 1;
-            }
-            else
-                break;
+            if(arr[i]>arr[i+1])
+                cnt++;
         }
-        bool dekho_to = true;
-        if(check==1)
-            dekho_to = nums[nums.size()-1]<=nums[0];
-        return (i==nums.size()-1 && dekho_to);
+        if(arr[len-1]>arr[0])
+            cnt+=1;
+
+        return (cnt ==0 || cnt==1);
     }
 };
