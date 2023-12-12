@@ -1,13 +1,22 @@
 class Solution {
 public:
-    void rotate(vector<int>& nums, int k) {
-        int len = nums.size();
-        vector<int>temp(len);
-        for(int i=0 ; i<len ; i++)
+    void rotate(vector<int>& arr, int k) {
+        int len = arr.size();
+        if(len==1 || k==0)
+            return;
+        k = k%len;
+        int count = 0;
+        for(int start=0 ; count<len ; start++)
         {
-            int index = (i+k)%len;
-            temp[index] = nums[i];
+            int current = start;
+            int prev = arr[start];
+            
+            do {
+                int next = (current+k)%len;
+                swap(arr[next],prev);
+                current = next;
+                count++;
+            } while(start != current);
         }
-        nums = temp;
     }
 };
