@@ -1,10 +1,12 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        int sum = 0;
         int len = nums.size();
-        for(int i=0 ; i<len ; i++)
-            sum += nums[i];
-        return (len*(len+1))/2 - sum;
+        int sum = accumulate(nums.begin(),nums.end(),0);
+        int maxm = *max_element(nums.begin(),nums.end());
+        if(len==maxm+1)
+            return maxm+1;
+        int reqSum = (maxm*(maxm+1))/2;
+        return reqSum-sum;
     }
 };
