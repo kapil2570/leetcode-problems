@@ -14,18 +14,16 @@ public:
         if(!head)
             return head;
         vector<int>arr;
-        while(head) {
-            arr.push_back(head->val);
-            head = head->next;
-        }
-        ListNode *newHead = new ListNode();
-        ListNode *temp = newHead;
-        for(int i=arr.size()-1 ; i>=0 ; i--) {
-            temp->val = arr[i];
-            if(i!=0)
-                temp->next = new ListNode();
+        ListNode *temp = head;
+        while(temp) {
+            arr.push_back(temp->val);
             temp = temp->next;
         }
-        return newHead;
+        temp = head;
+        for(int i=arr.size()-1 ; i>=0 ; i--) {
+            temp->val = arr[i];
+            temp = temp->next;
+        }
+        return head;
     }
 };
