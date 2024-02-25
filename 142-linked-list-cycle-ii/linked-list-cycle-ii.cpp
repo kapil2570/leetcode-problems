@@ -17,6 +17,6 @@ public:
             mpp[temp]++;
             temp = temp->next;
         }
-        return temp;
+        return nullptr;
     }
 };
