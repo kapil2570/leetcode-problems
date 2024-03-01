@@ -9,13 +9,7 @@ public:
             else
                 ones++;
         }
-        for(int i=0 ; i<n-1 ; i++) {
-            if(i<ones-1)
-                s[i] = '1';
-            else
-                s[i] = '0';
-        }
-        s[n-1] = '1';
+        s = string(ones-1,'1') + string(zeros,'0') + '1';
         return s;
     }
 };
