@@ -12,8 +12,8 @@ class Solution {
 public:
     ListNode* merge(ListNode *first, ListNode *second) {
 
-        ListNode *head = new ListNode(0);
-        ListNode *curr = head;
+        ListNode *dummyHead = new ListNode(0);
+        ListNode *curr = dummyHead;
         while(first!=NULL && second!=NULL) {
             if(first->val<=second->val) {
                 curr->next = first;
@@ -26,18 +26,12 @@ public:
             curr = curr->next;
         }
 
-        while(first!=NULL) {
+        if(first)
             curr->next=first;
-            first=first->next;
-            curr=curr->next;
-        }
-
-        while(second!=NULL) {
+        else if(second)
             curr->next=second;
-            second=second->next;
-            curr=curr->next;
-        }
-        return head->next;
+
+        return dummyHead->next;
     }
 
     ListNode* findMid(ListNode *head) {
