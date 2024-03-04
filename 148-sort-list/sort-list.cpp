@@ -10,21 +10,53 @@
  */
 class Solution {
 public:
+    ListNode* merge(ListNode *first, ListNode *second) {
+
+        ListNode *head = new ListNode(0);
+        ListNode *curr = head;
+        while(first!=NULL && second!=NULL) {
+            if(first->val<=second->val) {
+                curr->next = first;
+                first = first->next;
+            }
+            else {
+                curr->next = second;
+                second = second->next;
+            }
+            curr = curr->next;
+        }
+
+        while(first!=NULL) {
+            curr->next=first;
+            first=first->next;
+            curr=curr->next;
+        }
+
+        while(second!=NULL) {
+            curr->next=second;
+            second=second->next;
+            curr=curr->next;
+        }
+        return head->next;
+    }
+
+    ListNode* findMid(ListNode *head) {
+        ListNode *slow=head, *fast=head->next;
+        while(fast!=NULL && fast->next!=NULL) {
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+    }
+
     ListNode* sortList(ListNode* head) {
-        vector<int>nums;
-        ListNode *temp=head;
-        while(temp) {
-            nums.push_back(temp->val);
-            temp=temp->next;
-        }
-        sort(nums.begin(),nums.end());
-        temp=head;
-        int i=0;
-        while(temp) {
-            temp->val=nums[i];
-            i++;
-            temp=temp->next;
-        }
-        return head;
+        if(head==NULL || head->next==NULL)
+            return head;
+        ListNode *mid = findMid(head);
+        ListNode *temp = mid->next;
+        mid->next = NULL;
+        ListNode *first = sortList(head);
+        ListNode *second = sortList(temp);
+        return merge(first,second);
     }
 };
