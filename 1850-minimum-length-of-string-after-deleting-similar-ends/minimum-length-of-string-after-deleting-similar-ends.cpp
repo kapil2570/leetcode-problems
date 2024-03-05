@@ -3,25 +3,14 @@ public:
     int minimumLength(string s) {
         int n=s.size();
         int low=0, high=n-1;
-        while(low<high) {
-            if(s[low]==s[high]) {
-                while(low<high) {
-                    if(s[low]==s[low+1])
-                        low++;
-                    if(s[high]==s[high-1])
-                        high--;
-                    if(s[low]!=s[low+1] && s[high]!=s[high-1]) {
-                        if(high-low==2)
-                            return 1;
-                        break;
-                    }
-                }
+
+        while(low<high && s[low]==s[high]) {
+            char ch = s[low];
+            while(low<=high && s[low]==ch)
                 low++;
+            while(low<=high && s[high]==ch)
                 high--;
-            }
-            else
-                break;
         }
-        return max(high-low+1,0);
+        return high-low+1;
     }
 };
