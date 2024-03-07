@@ -11,11 +11,11 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        ListNode *singleJump = head, *doubleJump = head;
-        while(doubleJump && doubleJump->next) {
-            singleJump = singleJump->next;
-            doubleJump = doubleJump->next->next;
+        ListNode *slow=head, *fast=head;
+        while(fast && fast->next) {
+            slow=slow->next;
+            fast=fast->next->next;
         }
-        return singleJump; 
+        return slow;
     }
 };
