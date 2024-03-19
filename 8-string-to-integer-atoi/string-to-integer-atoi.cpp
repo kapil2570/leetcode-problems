@@ -1,30 +1,34 @@
 class Solution {
 public:
     int myAtoi(string s) {
-        int i = 0;
-        int n = s.length();
-        
-        // Step 1: Ignore leading whitespaces
-        while (i < n && s[i] == ' ')
-            i++;
-        
-        // Step 2: Check for sign
-        int sign = 1;
-        if (i < n && (s[i] == '-' || s[i] == '+')) {
-            sign = (s[i] == '-') ? -1 : 1;
-            i++;
+        return recursiveAtoi(s, 0, 1);
+    }
+
+private:
+    int recursiveAtoi(const string& s, int idx, int sign) {
+        if (idx >= s.length())
+            return 0;
+
+        char c = s[idx];
+        if (c == ' ')
+            return recursiveAtoi(s, idx + 1, sign);
+        else if (c == '-' || c == '+') {
+            // Check if there are consecutive '+' or '-' signs
+            if (idx + 1 < s.length() && (isdigit(s[idx+1]) == false))
+                return 0; // Invalid input
+            return recursiveAtoi(s, idx + 1, (c == '-') ? -1 : 1);
         }
-        
-        // Step 3: Read digits
-        long long result = 0;
-        while (i < n && isdigit(s[i])) {
-            result = result * 10 + (s[i] - '0');
-            if (result > INT_MAX)
-                return (sign == 1) ? INT_MAX : INT_MIN;
-            i++;
+        else if (isdigit(c)) {
+            long long num = 0;
+            while (idx < s.length() && isdigit(s[idx])) {
+                num = num * 10 + (s[idx] - '0');
+                if (num > INT_MAX)
+                    return (sign == 1) ? INT_MAX : INT_MIN;
+                idx++;
+            }
+            return sign * num;
+        } else {
+            return 0; // Non-digit character encountered
         }
-        
-        // Step 4: Apply sign
-        return sign * result;
     }
 };
