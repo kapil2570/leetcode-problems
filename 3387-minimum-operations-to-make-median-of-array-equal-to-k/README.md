@@ -1,6 +1,8 @@
 <h2><a href="https://leetcode.com/problems/minimum-operations-to-make-median-of-array-equal-to-k">Minimum Operations to Make Median of Array Equal to K</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>You are given an integer array <code>nums</code> and a <strong>non-negative</strong> integer <code>k</code>. In one operation, you can increase or decrease any element by 1.</p>
 
-<p>Return the <strong>minimum</strong> number of operations needed to make the <strong><span data-keyword="median-array">median</span></strong> of <code>nums</code> <em>equal</em> to <code>k</code>.</p>
+<p>Return the <strong>minimum</strong> number of operations needed to make the <strong>median</strong> of <code>nums</code> <em>equal</em> to <code>k</code>.</p>
+
+<p>The median of an array is defined as the middle element of the array when it is sorted in non-decreasing order. If there are two choices for a median, the larger of the two values is taken.</p>
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
