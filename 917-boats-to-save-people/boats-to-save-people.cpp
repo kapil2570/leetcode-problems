@@ -5,19 +5,20 @@ public:
         int n = people.size();
         int low=0, high=n-1;
         sort(people.begin(),people.end());
+        int ans = 0;
         while(low<high) {
             if(people[low]+people[high] <= limit) {
-                store.push_back(people[low]+people[high]);
+                ans++;
                 low++;
                 high--;
             }
             else {
-                store.push_back(people[high]);
+                ans++;
                 high--;
             }
         }
         if(low==high)
-            store.push_back(people[low]);
-        return store.size();
+            ans++;
+        return ans;
     }
 };
