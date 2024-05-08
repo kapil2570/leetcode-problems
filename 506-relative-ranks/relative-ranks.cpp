@@ -1,22 +1,32 @@
 class Solution {
 public:
+    struct Cmp {
+        bool operator()(const pair<int,int>&a, const pair<int,int>&b) {
+            return a.first < b.first;
+        }
+    };
+
     vector<string> findRelativeRanks(vector<int>& score) {
         int n = score.size();
-        map<int,int>mpp;
-        for(int i=0 ; i<n ; i++) {
-            mpp[score[i]] = i;
-        }
+        priority_queue<pair<int,int>, vector<pair<int,int>>, Cmp>pq;
+        for(int i=0 ; i<n ; i++)
+            pq.push({score[i],i});
         vector<string>ans(n);
-        sort(score.begin(),score.end());
-        for(int i=0 ; i<n ; i++) {
-            if(i<n-3)
-                ans[mpp[score[i]]] = to_string(n-i);
-            else if(i==n-3)
-                ans[mpp[score[i]]] = "Bronze Medal";
-            else if(i==n-2)
-                ans[mpp[score[i]]] = "Silver Medal";
-            else
-                ans[mpp[score[i]]] = "Gold Medal";
+        ans[pq.top().second] = "Gold Medal";
+        pq.pop();
+        if(!pq.empty()) {
+            ans[pq.top().second] = "Silver Medal";
+            pq.pop();
+        }
+        if(!pq.empty()) {
+            ans[pq.top().second] = "Bronze Medal";
+            pq.pop();
+        }
+        int cnt = 4;
+        while(!pq.empty()) {
+            ans[pq.top().second] = to_string(cnt);
+            cnt++;
+            pq.pop();
         }
         return ans;
     }
