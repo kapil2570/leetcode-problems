@@ -6,14 +6,14 @@ public:
         int count = 0;
 
         while (high < n) {
-            if (nums[high] % 2 != 0) {
+            if (nums[high] % 2) {
                 odds++;
                 count = 0;
             }
 
             while (odds == k) {
                 count++;
-                if (nums[low] % 2 != 0) {
+                if (nums[low] % 2) {
                     odds--;
                 }
                 low++;
