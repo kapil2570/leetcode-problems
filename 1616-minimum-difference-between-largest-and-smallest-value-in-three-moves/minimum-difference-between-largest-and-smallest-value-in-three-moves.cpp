@@ -11,6 +11,8 @@ public:
         int d = nums[n-2]-nums[2];
         int minA = min(a,b);
         int minB = min(c,d);
-        return min(minA,minB);
+        vector<int>temp = {a,b,c,d};
+        return *min_element(temp.begin(),temp.end());
+        // return min(minA,minB);
     }
 };
