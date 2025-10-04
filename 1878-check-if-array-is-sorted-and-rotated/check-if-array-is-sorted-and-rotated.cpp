@@ -1,16 +1,16 @@
 class Solution {
 public:
-    bool check(vector<int>& arr) {
-        int cnt = 0;
-        int len = arr.size();
-        for(int i=0 ; i<len-1 ; i++)
-        {
-            if(arr[i]>arr[i+1])
-                cnt++;
+    bool check(vector<int>& nums) {
+        int i=0;
+        int n = nums.size();
+        int count = 0;
+        for(i=0 ; i<n-1 ; i++) {
+            if(nums[i] > nums[i+1]) {
+                if(count==0) count++;
+                else break;
+            }
         }
-        if(arr[len-1]>arr[0])
-            cnt+=1;
-
-        return cnt<=1;
+        if((i==n-1 && nums[i] <= nums[0]) || count==0) return true;
+        return false;
     }
 };
