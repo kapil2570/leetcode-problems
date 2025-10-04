@@ -1,20 +1,14 @@
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
-        int check = 0, i = 1;
-        int cnt = 0;
-        while(check<i && i<nums.size())
-        {
-            if(nums[check]!=nums[i])
-            {
-                int temp = nums[check+1];
-                nums[check+1] = nums[i];
-                nums[i] = temp;
-                check++;
-                cnt++;
+        int i=1, maxSeen=nums[0];
+        for(int j=1 ; j<nums.size() ; j++) {
+            if(nums[j] > maxSeen) {
+                nums[i] = nums[j];
+                maxSeen = nums[j];
+                i++;
             }
-            i++;
         }
-        return cnt+1;
+        return i;
     }
 };
